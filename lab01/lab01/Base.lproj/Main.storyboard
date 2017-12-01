@@ -105,11 +105,11 @@
                             <outlet property="delegate" destination="rDY-rS-zA0" id="6Lm-yK-ESV"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Values" id="SqE-Dz-2X6"/>
+                    <tabBarItem key="tabBarItem" title="Values" image="second" id="SqE-Dz-2X6"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ext-cj-bSB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809" y="191"/>
+            <point key="canvasLocation" x="809" y="205"/>
         </scene>
         <!--Sensors-->
         <scene sceneID="RpP-D4-Wy2">
@@ -119,26 +119,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="mSA-mo-mPq">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mSA-mo-mPq" id="3q9-Aw-QCj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="yXI-WY-pU5" id="vCZ-QB-C9x"/>
                             <outlet property="delegate" destination="yXI-WY-pU5" id="fHW-a7-QcH"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Sensors" id="Nfw-85-LvT"/>
+                    <tabBarItem key="tabBarItem" title="Sensors" image="second" id="Nfw-85-LvT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gkp-Y3-IGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809" y="1012"/>
+            <point key="canvasLocation" x="-2.3999999999999999" y="821.73913043478262"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -163,5 +153,6 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
+        <image name="second" width="30" height="30"/>
     </resources>
 </document>

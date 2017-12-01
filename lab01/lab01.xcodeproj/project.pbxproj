@@ -15,6 +15,7 @@
 		AC326B681FD15014004F0BBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC326B661FD15014004F0BBF /* LaunchScreen.storyboard */; };
 		AC326B731FD15014004F0BBF /* lab01Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC326B721FD15014004F0BBF /* lab01Tests.swift */; };
 		AC326B7E1FD15014004F0BBF /* lab01UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC326B7D1FD15014004F0BBF /* lab01UITests.swift */; };
+		AC326B8C1FD1589E004F0BBF /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC326B8B1FD1589E004F0BBF /* SensorTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		AC326B791FD15014004F0BBF /* lab01UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lab01UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC326B7D1FD15014004F0BBF /* lab01UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lab01UITests.swift; sourceTree = "<group>"; };
 		AC326B7F1FD15014004F0BBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC326B8B1FD1589E004F0BBF /* SensorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				AC326B5D1FD15013004F0BBF /* FirstViewController.swift */,
 				AC326B5F1FD15013004F0BBF /* SecondViewController.swift */,
 				AC326B611FD15013004F0BBF /* Main.storyboard */,
+				AC326B8B1FD1589E004F0BBF /* SensorTableViewCell.swift */,
 				AC326B641FD15014004F0BBF /* Assets.xcassets */,
 				AC326B661FD15014004F0BBF /* LaunchScreen.storyboard */,
 				AC326B691FD15014004F0BBF /* Info.plist */,
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC326B601FD15013004F0BBF /* SecondViewController.swift in Sources */,
+				AC326B8C1FD1589E004F0BBF /* SensorTableViewCell.swift in Sources */,
 				AC326B5C1FD15013004F0BBF /* AppDelegate.swift in Sources */,
 				AC326B5E1FD15013004F0BBF /* FirstViewController.swift in Sources */,
 			);
