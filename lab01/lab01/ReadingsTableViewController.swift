@@ -20,7 +20,7 @@ class ReadingsTableViewController: UITableViewController {
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "readingCell");
-        cell.textLabel?.text = self.readings[indexPath.row].sensor + String(self.readings[indexPath.row].value);
+        cell.textLabel?.text = self.readings[indexPath.row].sensor + " " + String(self.readings[indexPath.row].value);
         cell.detailTextLabel?.text = String(self.readings[indexPath.row].timestamp);
         return (cell);
     }

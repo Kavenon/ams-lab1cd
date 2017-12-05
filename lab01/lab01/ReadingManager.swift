@@ -55,10 +55,11 @@ class ReadingManager {
     
     func insert(count: Int){
         
-        let sql = "INSERT INTO reading (timestamp, sensor, value) VALUES (?, ?, ?);";
+        let sql = "INSERT INTO readings (timestamp, sensor, value) VALUES (?, ?, ?);";
         var stmt: OpaquePointer? = nil;
         if sqlite3_prepare(self.db, sql, -1, &stmt, nil) == SQLITE_OK {
-            for index in 1...count {
+            for _ in 1...count {
+                print("insering");
                 let timestamp = self.randomTimestamp(base: Int(Date().timeIntervalSince1970));
                 let sensor = self.randomSensor(max: 20);
                 let value = self.randomValue(max: 100);
@@ -78,13 +79,13 @@ class ReadingManager {
     }
     
     func clear(){
-        let sql = "DELETE FROM reading;";
+        let sql = "DELETE FROM readings;";
         let result = sqlite3_exec(self.db, sql, nil, nil, nil);
         print("Clear result: " + String(result));
     }
     
     func getAll() -> [Reading] {
-        let sql = "SELECT timestamp, sensor, value FROM reading;";
+        let sql = "SELECT timestamp, sensor, value FROM readings;";
         var stmt: OpaquePointer? = nil;
         var result: [Reading] = [];
         
@@ -93,7 +94,7 @@ class ReadingManager {
             let timestamp = Int(sqlite3_column_int(stmt, 0));
             let sensor = String(cString: sqlite3_column_text(stmt, 1));
             let value = Float(sqlite3_column_double(stmt, 2));
-            result.append(Reading(timestamp: timestamp, value: value,sensor: sensor));
+            result.append(Reading(timestamp: timestamp, sensor: sensor, value: value));
         }
         sqlite3_finalize(stmt);
         
