@@ -10,23 +10,38 @@ import UIKit
 
 class SensorViewController: UITableViewController {
     
-    let list = ["test", "test2"];
+    var db: OpaquePointer? = nil;
+    var creator: SensorCreator?;
+    var sensors: [Sensor] = [];
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (list.count);
+        print(self.sensors.count);
+        return (self.sensors.count);
     }
   
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "sensorCell");
-        cell.textLabel?.text = list[indexPath.row];
-        cell.detailTextLabel?.text = "desc";
+        cell.textLabel?.text = self.sensors[indexPath.row].name;
+        cell.detailTextLabel?.text = self.sensors[indexPath.row].desc;
         return (cell);
     }
-
-
+    
+    override func viewDidAppear(_ animated: Bool){
+        print("reload");
+        self.tableView.reloadData();
+    }
+ 
     override func viewDidLoad() {
-        super.viewDidLoad()
-
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        self.creator = SensorCreator(db: appDelegate.sqliteManager!.db);
+        self.creator!.create();
+        self.creator!.clear();
+        self.creator!.insert(count: 20);
+        self.sensors = self.creator!.getAll();
+        print("loaded" + String(self.sensors.count));
+        super.viewDidLoad();
+        
+        
         // Do any additional setup after loading the view.
     }
 
