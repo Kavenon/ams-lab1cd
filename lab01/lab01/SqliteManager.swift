@@ -18,10 +18,8 @@ class SqliteManager {
             return;
         }
         let docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
-        let dbFilePath = NSURL(fileURLWithPath: docDir).appendingPathComponent("lab01-3.db")?.path;
+        let dbFilePath = NSURL(fileURLWithPath: docDir).appendingPathComponent("lab.db")?.path;
         
-        print("dbFilePath" + dbFilePath!);
-    
         let result = sqlite3_open(dbFilePath, &self.db);
         if result == SQLITE_OK{
             print("SQLite connected");

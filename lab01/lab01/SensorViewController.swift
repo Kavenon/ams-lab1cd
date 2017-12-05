@@ -15,7 +15,6 @@ class SensorViewController: UITableViewController {
     var sensors: [Sensor] = [];
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(self.sensors.count);
         return (self.sensors.count);
     }
   
@@ -26,11 +25,6 @@ class SensorViewController: UITableViewController {
         return (cell);
     }
     
-    override func viewDidAppear(_ animated: Bool){
-        print("reload");
-        self.tableView.reloadData();
-    }
- 
     override func viewDidLoad() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         self.creator = SensorCreator(db: appDelegate.sqliteManager!.db);
@@ -38,7 +32,6 @@ class SensorViewController: UITableViewController {
         self.creator!.clear();
         self.creator!.insert(count: 20);
         self.sensors = self.creator!.getAll();
-        print("loaded" + String(self.sensors.count));
         super.viewDidLoad();
         
         

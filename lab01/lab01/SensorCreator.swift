@@ -35,9 +35,8 @@ class SensorCreator {
         for index in 1...count {
             let name = index < 10 ? "S0" + String(index) : "S" + String(index);
             let desc = "Sensor number " + String(index);
-            let sql = "INSERT INTO sensor (name, desc) VALUES (\(name), \(desc));";
-            let result = sqlite3_exec(self.db, sql, nil, nil, nil);
-            print("Insert result: " + String(result));
+            let sql = "INSERT INTO sensor (name, desc) VALUES ('\(name)', '\(desc)');";
+            sqlite3_exec(self.db, sql, nil, nil, nil);
         }
         print ("Sensors insert finished");
         
@@ -56,11 +55,9 @@ class SensorCreator {
         
         sqlite3_prepare_v2(self.db, sql, -1, &stmt, nil);
         while sqlite3_step(stmt) == SQLITE_ROW {
-            
             let name = String(cString: sqlite3_column_text(stmt, 0));
             let desc = String(cString: sqlite3_column_text(stmt, 1));
             result.append(Sensor(name: name, desc: desc));
-            print("appending" + name);
         }
         sqlite3_finalize(stmt);
         
