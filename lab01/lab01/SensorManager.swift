@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SensorCreator {
+class SensorManager {
     
     var db: OpaquePointer?;
     

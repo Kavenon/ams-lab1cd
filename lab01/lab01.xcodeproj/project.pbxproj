@@ -10,8 +10,11 @@
 		8EFA13811FD4A1ED009F9720 /* SensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA13801FD4A1ED009F9720 /* SensorViewController.swift */; };
 		8EFA13831FD4ADB0009F9720 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA13821FD4ADB0009F9720 /* Sensor.swift */; };
 		8EFA13871FD72114009F9720 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EFA13861FD72114009F9720 /* libsqlite3.tbd */; };
-		8EFA13891FD72DAA009F9720 /* SensorCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA13881FD72DAA009F9720 /* SensorCreator.swift */; };
+		8EFA13891FD72DAA009F9720 /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA13881FD72DAA009F9720 /* SensorManager.swift */; };
 		8EFA138B1FD73CFE009F9720 /* SqliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA138A1FD73CFE009F9720 /* SqliteManager.swift */; };
+		8EFA138D1FD7528E009F9720 /* Reading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA138C1FD7528E009F9720 /* Reading.swift */; };
+		8EFA138F1FD75303009F9720 /* ReadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA138E1FD75303009F9720 /* ReadingManager.swift */; };
+		8EFA13911FD75A45009F9720 /* ReadingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA13901FD75A45009F9720 /* ReadingsTableViewController.swift */; };
 		AC326B5C1FD15013004F0BBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC326B5B1FD15013004F0BBF /* AppDelegate.swift */; };
 		AC326B5E1FD15013004F0BBF /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC326B5D1FD15013004F0BBF /* FirstViewController.swift */; };
 		AC326B601FD15013004F0BBF /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC326B5F1FD15013004F0BBF /* SecondViewController.swift */; };
@@ -44,8 +47,11 @@
 		8EFA13821FD4ADB0009F9720 /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		8EFA13841FD72052009F9720 /* lab01-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "lab01-Bridging-Header.h"; sourceTree = "<group>"; };
 		8EFA13861FD72114009F9720 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		8EFA13881FD72DAA009F9720 /* SensorCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorCreator.swift; sourceTree = "<group>"; };
+		8EFA13881FD72DAA009F9720 /* SensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManager.swift; sourceTree = "<group>"; };
 		8EFA138A1FD73CFE009F9720 /* SqliteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SqliteManager.swift; sourceTree = "<group>"; };
+		8EFA138C1FD7528E009F9720 /* Reading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reading.swift; sourceTree = "<group>"; };
+		8EFA138E1FD75303009F9720 /* ReadingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingManager.swift; sourceTree = "<group>"; };
+		8EFA13901FD75A45009F9720 /* ReadingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingsTableViewController.swift; sourceTree = "<group>"; };
 		AC326B581FD15013004F0BBF /* lab01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lab01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC326B5B1FD15013004F0BBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC326B5D1FD15013004F0BBF /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -130,8 +136,11 @@
 				AC326B691FD15014004F0BBF /* Info.plist */,
 				8EFA13801FD4A1ED009F9720 /* SensorViewController.swift */,
 				8EFA13821FD4ADB0009F9720 /* Sensor.swift */,
-				8EFA13881FD72DAA009F9720 /* SensorCreator.swift */,
+				8EFA13881FD72DAA009F9720 /* SensorManager.swift */,
 				8EFA138A1FD73CFE009F9720 /* SqliteManager.swift */,
+				8EFA138C1FD7528E009F9720 /* Reading.swift */,
+				8EFA138E1FD75303009F9720 /* ReadingManager.swift */,
+				8EFA13901FD75A45009F9720 /* ReadingsTableViewController.swift */,
 			);
 			path = lab01;
 			sourceTree = "<group>";
@@ -290,8 +299,11 @@
 			files = (
 				AC326B601FD15013004F0BBF /* SecondViewController.swift in Sources */,
 				8EFA13831FD4ADB0009F9720 /* Sensor.swift in Sources */,
-				8EFA13891FD72DAA009F9720 /* SensorCreator.swift in Sources */,
+				8EFA138D1FD7528E009F9720 /* Reading.swift in Sources */,
+				8EFA13891FD72DAA009F9720 /* SensorManager.swift in Sources */,
+				8EFA13911FD75A45009F9720 /* ReadingsTableViewController.swift in Sources */,
 				AC326B5C1FD15013004F0BBF /* AppDelegate.swift in Sources */,
+				8EFA138F1FD75303009F9720 /* ReadingManager.swift in Sources */,
 				8EFA13811FD4A1ED009F9720 /* SensorViewController.swift in Sources */,
 				AC326B5E1FD15013004F0BBF /* FirstViewController.swift in Sources */,
 				8EFA138B1FD73CFE009F9720 /* SqliteManager.swift in Sources */,

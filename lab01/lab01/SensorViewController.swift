@@ -11,7 +11,7 @@ import UIKit
 class SensorViewController: UITableViewController {
     
     var db: OpaquePointer? = nil;
-    var creator: SensorCreator?;
+    var manager: SensorManager?;
     var sensors: [Sensor] = [];
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,11 +27,11 @@ class SensorViewController: UITableViewController {
     
     override func viewDidLoad() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-        self.creator = SensorCreator(db: appDelegate.sqliteManager!.db);
-        self.creator!.create();
-        self.creator!.clear();
-        self.creator!.insert(count: 20);
-        self.sensors = self.creator!.getAll();
+        self.manager = SensorManager(db: appDelegate.sqliteManager!.db);
+        self.manager!.create();
+        self.manager!.clear();
+        self.manager!.insert(count: 20);
+        self.sensors = self.manager!.getAll();
         super.viewDidLoad();
         
         
