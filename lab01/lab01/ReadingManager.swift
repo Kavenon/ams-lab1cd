@@ -48,9 +48,9 @@ class ReadingManager {
         return base - Int(random);
     }
     
-    func randomValue(max: Int) -> Float {
-        let v1 = Float(Int(arc4random_uniform(UInt32(max))) / max);
-        return v1 * Float(max);
+    func randomValue(min: Double, max: Double) -> Double {
+        let rand = Double(arc4random()) / 0xFFFFFFFF;
+        return rand * (max - min) + min
     }
     
     func insert(count: Int){
@@ -58,16 +58,19 @@ class ReadingManager {
         let sql = "INSERT INTO readings (timestamp, sensor, value) VALUES (?, ?, ?);";
         var stmt: OpaquePointer? = nil;
         if sqlite3_prepare(self.db, sql, -1, &stmt, nil) == SQLITE_OK {
+            sqlite3_exec(db, "BEGIN TRANSACTION", nil, nil, nil);
             for _ in 1...count {
-                print("insering");
+                print("inserting");
                 let timestamp = self.randomTimestamp(base: Int(Date().timeIntervalSince1970));
                 let sensor = self.randomSensor(max: 20);
-                let value = self.randomValue(max: 100);
+                let value = self.randomValue(min: 0.0, max:100.0);
                 sqlite3_bind_int(stmt, 1, Int32(timestamp));
                 sqlite3_bind_text(stmt, 2, sensor, -1, nil);
                 sqlite3_bind_double(stmt, 3, Double(value));
                 sqlite3_step(stmt);
+                sqlite3_reset(stmt);
             }
+            sqlite3_exec(db, "COMMIT TRANSACTION", nil, nil, nil);
         }
         else {
             print("Error while creating statement");
@@ -93,7 +96,7 @@ class ReadingManager {
         while sqlite3_step(stmt) == SQLITE_ROW {
             let timestamp = Int(sqlite3_column_int(stmt, 0));
             let sensor = String(cString: sqlite3_column_text(stmt, 1));
-            let value = Float(sqlite3_column_double(stmt, 2));
+            let value = Double(sqlite3_column_double(stmt, 2));
             result.append(Reading(timestamp: timestamp, sensor: sensor, value: value));
         }
         sqlite3_finalize(stmt);

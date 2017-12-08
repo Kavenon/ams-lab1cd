@@ -27,6 +27,8 @@ class SensorViewController: UITableViewController {
     
     override func viewDidLoad() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        self.manager = SensorManager(db: appDelegate.sqliteManager!.getDb());
+        
         self.manager = SensorManager(db: appDelegate.sqliteManager!.db);
         self.manager!.create();
         self.manager!.clear();

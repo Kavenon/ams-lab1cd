@@ -19,7 +19,7 @@ class SqliteManager {
         }
         let docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
         let dbFilePath = NSURL(fileURLWithPath: docDir).appendingPathComponent("lab.db")?.path;
-        
+                
         let result = sqlite3_open(dbFilePath, &self.db);
         if result == SQLITE_OK{
             print("SQLite connected");
@@ -29,7 +29,12 @@ class SqliteManager {
         }
 
     }
-        
+
+    func getDb() -> OpaquePointer? {
+        self.connect();
+        return self.db;
+    }
+    
     func disconnect(){
         if self.db == nil {
             print("Database already disconnected");

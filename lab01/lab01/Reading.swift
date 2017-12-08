@@ -11,5 +11,5 @@ import Foundation
 struct Reading {
     var timestamp: Int = 0;
     var sensor: String = "";
-    var value: Float = 0.0;
+    var value: Double = 0.0;
 }

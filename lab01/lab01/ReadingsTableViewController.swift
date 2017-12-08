@@ -26,18 +26,21 @@ class ReadingsTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-        self.manager = ReadingManager(db: appDelegate.sqliteManager!.db);
-        self.manager!.create();
-        self.manager!.clear();
-        self.manager!.insert(count: 20);
-        self.readings = self.manager!.getAll();
-        super.viewDidLoad();
         
+        print("load");
+                super.viewDidLoad();
         
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool){
+        print("will");
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        self.manager = ReadingManager(db: appDelegate.sqliteManager!.getDb());
+        self.readings = self.manager!.getAll();
+        self.tableView.reloadData();
+
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
