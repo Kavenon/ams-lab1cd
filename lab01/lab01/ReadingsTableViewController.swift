@@ -10,7 +10,6 @@ import UIKit
 
 class ReadingsTableViewController: UITableViewController {
 
-    var db: OpaquePointer? = nil;
     var manager: ReadingManager?;
     var readings: [Reading] = [];
     
@@ -27,8 +26,8 @@ class ReadingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         
-        print("load");
-                super.viewDidLoad();
+        self.tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0);
+        super.viewDidLoad();
         
         // Do any additional setup after loading the view.
     }
@@ -36,7 +35,7 @@ class ReadingsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool){
         print("will");
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-        self.manager = ReadingManager(db: appDelegate.sqliteManager!.getDb());
+        self.manager = ReadingManager(manager: appDelegate.sqliteManager!);
         self.readings = self.manager!.getAll();
         self.tableView.reloadData();
 

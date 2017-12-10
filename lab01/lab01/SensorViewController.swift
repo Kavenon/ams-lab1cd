@@ -26,10 +26,12 @@ class SensorViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-        self.manager = SensorManager(db: appDelegate.sqliteManager!.getDb());
         
-        self.manager = SensorManager(db: appDelegate.sqliteManager!.db);
+        self.tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0);
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        self.manager = SensorManager(sqlite: appDelegate.sqliteManager!);
+        
         self.manager!.create();
         self.manager!.clear();
         self.manager!.insert(count: 20);
