@@ -225,7 +225,7 @@ class DataManager {
         let sensors = try? moc.fetch(fr);
         for i in 1...count {
             
-            
+                      
                 let randomIndex = Int(arc4random_uniform(UInt32((sensors?.count)!)))
                 let sensor = sensors?[randomIndex]
                 
