@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class UtilityViewController: UIViewController {
 
     @IBOutlet var recordField: UITextField!
     @IBOutlet var runButton: UIButton!
@@ -22,7 +22,6 @@ class FirstViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         self.manager = ReadingManager(manager: appDelegate.sqliteManager!);
-        
     }
 
     @IBAction func forSensorClick(_ sender: Any) {
@@ -34,7 +33,7 @@ class FirstViewController: UIViewController {
         for row in forSensor {
             self.logText.insertText("Sensor \(row.sensor) - \(row.count) - \(row.avg)\n");
         }
-        self.logText.insertText("SELECT sensor, count(*), avg(value) from readings group by sensor");
+        self.logText.insertText("SELECT sensor, count(*), avg(value) from readings group by sensor;\n");
         self.logText.insertText("Took \(took)\n-----------------\n");
 
     }
@@ -44,7 +43,7 @@ class FirstViewController: UIViewController {
         let avg = self.manager!.avg();
         let took = NSDate().timeIntervalSince(start as Date);
         self.logText.insertText("Average \(avg) reading \n");
-        self.logText.insertText("SELECT avg(value) from readings;");
+        self.logText.insertText("SELECT avg(value) from readings;\n");
         self.logText.insertText("Took \(took)\n-----------------\n");
     }
     
@@ -53,7 +52,7 @@ class FirstViewController: UIViewController {
         let minmax = self.manager!.minMaxTimestampAndLog();
         let took = NSDate().timeIntervalSince(start as Date);
         self.logText.insertText("[min,max] \(minmax) timestamps\n");
-        self.logText.insertText("SELECT min(timestamp), max(timestamp) from readings;");
+        self.logText.insertText("SELECT min(timestamp), max(timestamp) from readings;\n");
         self.logText.insertText("Took \(took)\n-----------------\n");
     }
     
