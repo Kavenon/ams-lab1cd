@@ -10,6 +10,14 @@ import UIKit
 import Foundation
 import CoreData
 
+extension Array {
+    func chunks(_ chunkSize: Int) -> [[Element]] {
+        return stride(from: 0, to: self.count, by: chunkSize).map {
+            Array(self[$0..<Swift.min($0 + chunkSize, self.count)])
+        }
+    }
+}
+
 class DataManager {
     
     let appDelegate: AppDelegate;
@@ -45,6 +53,16 @@ class DataManager {
             self.insertSensors(count: 20)
         }
         
+    }
+    
+    func randomSensor(max: Int) -> String {
+        let random = arc4random_uniform(UInt32(max)) + 1;
+        if(random < 10){
+            return "S0" + String(random);
+        }
+        else {
+            return "S" + String(random);
+        }
     }
     
     func randomTimestamp(base: Int) -> UInt32 {
@@ -138,31 +156,104 @@ class DataManager {
         
     }
     
+
     func generateReadings(count: Int){
+        
+        //let fr = NSFetchRequest<Sensor>(entityName: "Sensor");
+        
+//        
+//        let numbers = Array(1...count)
+//        let chunks = numbers.chunks(1000);
+//        for chunk in chunks {
+//            
+//            autoreleasepool {
+//                let sensors = try? moc.fetch(fr);
+//                for _ in chunk {
+//                    let randomIndex = Int(arc4random_uniform(UInt32((sensors?.count)!)))
+//                    let sensor = sensors?[randomIndex]
+//                
+//                    let entity = NSEntityDescription.entity  (forEntityName: "Reading", in: moc)
+//                    let timestamp = self.randomTimestamp(base: Int(Date().timeIntervalSince1970))
+//                
+//                    let value = self.randomValue(min: 0.0, max: 100.0)
+//                    let reading = NSManagedObject(entity: entity!, insertInto: moc)
+//                
+//                    reading.setValue(sensor, forKey: "sensor")
+//                        reading.setValue(timestamp, forKey: "timestamp")
+//                    reading.setValue(value, forKey: "value")
+//                    
+//                    sensor?.readings?.adding(reading)
+//                }
+//            }
+//            try? moc.save()
+//            moc.reset()
+//            
+//        }
+//        
+//        let sensors = try? moc.fetch(fr);
+        // =============================
+//        for i in 1...count {
+//            
+//            autoreleasepool {
+//            let fr = NSFetchRequest<Sensor>(entityName: "Sensor");
+//            fr.predicate = NSPredicate(format: "name == %@", self.randomSensor(max: 20))
+//            let sensors = try? moc.fetch(fr);
+//            let sensor = sensors?[0];
+//            
+//            
+//                let entity = NSEntityDescription.entity  (forEntityName: "Reading", in: moc)
+//                let timestamp = self.randomTimestamp(base: Int(Date().timeIntervalSince1970))
+//                
+//                let value = self.randomValue(min: 0.0, max: 100.0)
+//                let reading = NSManagedObject(entity: entity!, insertInto: moc)
+//                
+//                reading.setValue(sensor, forKey: "sensor")
+//                reading.setValue(timestamp, forKey: "timestamp")
+//                reading.setValue(value, forKey: "value")
+//            
+//            
+//                sensor?.readings?.adding(reading)
+//            
+//                try? moc.save()
+//                print("saving \(i)")
+//            }
+//        
+//        }
+//        
         
         let fr = NSFetchRequest<Sensor>(entityName: "Sensor");
         let sensors = try? moc.fetch(fr);
-        
-        for _ in 1...count {
-            let randomIndex = Int(arc4random_uniform(UInt32((sensors?.count)!)))
-            let sensor = sensors?[randomIndex]
+        for i in 1...count {
             
-            let entity = NSEntityDescription.entity  (forEntityName: "Reading", in: moc)
-            let timestamp = self.randomTimestamp(base: Int(Date().timeIntervalSince1970))
             
-            let value = self.randomValue(min: 0.0, max: 100.0)
-            let reading = NSManagedObject(entity: entity!, insertInto: moc)
-
-            reading.setValue(sensor, forKey: "sensor")
-            reading.setValue(timestamp, forKey: "timestamp")
-            reading.setValue(value, forKey: "value")
+                let randomIndex = Int(arc4random_uniform(UInt32((sensors?.count)!)))
+                let sensor = sensors?[randomIndex]
+                
+                
+                let entity = NSEntityDescription.entity  (forEntityName: "Reading", in: moc)
+                let timestamp = self.randomTimestamp(base: Int(Date().timeIntervalSince1970))
+                
+                let value = self.randomValue(min: 0.0, max: 100.0)
+                let reading = NSManagedObject(entity: entity!, insertInto: moc)
+                
+                reading.setValue(sensor, forKey: "sensor")
+                reading.setValue(timestamp, forKey: "timestamp")
+                reading.setValue(value, forKey: "value")
+                
+                
+                sensor?.readings?.adding(reading)
+                
             
-            sensor?.readings = sensor?.readings?.adding(reading) as NSSet?
+                print("saving \(i)")
+            
             
         }
         try? moc.save()
+    
+       
+
         print ("generating done")
-        
+    
     }
     
     func deleteAll(){
