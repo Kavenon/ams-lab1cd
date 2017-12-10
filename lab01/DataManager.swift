@@ -149,7 +149,7 @@ class DataManager {
             
             let entity = NSEntityDescription.entity  (forEntityName: "Reading", in: moc)
             let timestamp = self.randomTimestamp(base: Int(Date().timeIntervalSince1970))
-            print("test \(timestamp)")
+            
             let value = self.randomValue(min: 0.0, max: 100.0)
             let reading = NSManagedObject(entity: entity!, insertInto: moc)
 
@@ -158,8 +158,9 @@ class DataManager {
             reading.setValue(value, forKey: "value")
             
             sensor?.readings = sensor?.readings?.adding(reading) as NSSet?
-            try? moc.save()
+            
         }
+        try? moc.save()
         print ("generating done")
         
     }
