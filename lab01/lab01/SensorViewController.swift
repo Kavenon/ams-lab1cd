@@ -7,11 +7,10 @@
 //
 
 import UIKit
+import CoreData
 
 class SensorViewController: UITableViewController {
     
-    var db: OpaquePointer? = nil;
-    var manager: SensorManager?;
     var sensors: [Sensor] = [];
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,8 +29,16 @@ class SensorViewController: UITableViewController {
         self.tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0);
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-        self.manager = SensorManager(sqlite: appDelegate.sqliteManager!);
-        self.sensors = self.manager!.getAll();
+        let moc = appDelegate.persistentContainer.viewContext;
+        let fr = NSFetchRequest<Sensor>(entityName: "Sensor");
+        
+        do {
+            try sensors = moc.fetch(fr);
+        }
+        catch {
+            print("sensor fetch failed");
+        }
+        
         super.viewDidLoad();
         
     }

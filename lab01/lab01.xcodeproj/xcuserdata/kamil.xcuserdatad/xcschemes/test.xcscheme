@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AC326B571FD15010004F0BBF"
-               BuildableName = "lab01.app"
-               BlueprintName = "lab01"
+               BlueprintIdentifier = "8E6D57FC1FDDA800002164CE"
+               BuildableName = "test.app"
+               BlueprintName = "test"
                ReferencedContainer = "container:lab01.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,33 +28,13 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AC326B6D1FD15014004F0BBF"
-               BuildableName = "lab01Tests.xctest"
-               BlueprintName = "lab01Tests"
-               ReferencedContainer = "container:lab01.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AC326B781FD15014004F0BBF"
-               BuildableName = "lab01UITests.xctest"
-               BlueprintName = "lab01UITests"
-               ReferencedContainer = "container:lab01.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AC326B571FD15010004F0BBF"
-            BuildableName = "lab01.app"
-            BlueprintName = "lab01"
+            BlueprintIdentifier = "8E6D57FC1FDDA800002164CE"
+            BuildableName = "test.app"
+            BlueprintName = "test"
             ReferencedContainer = "container:lab01.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -75,22 +55,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AC326B571FD15010004F0BBF"
-            BuildableName = "lab01.app"
-            BlueprintName = "lab01"
+            BlueprintIdentifier = "8E6D57FC1FDDA800002164CE"
+            BuildableName = "test.app"
+            BlueprintName = "test"
             ReferencedContainer = "container:lab01.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-com.apple.CoreData.SQLDebug 1"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-com.apple.CoreData.Logging.stderr 1"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -104,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AC326B571FD15010004F0BBF"
-            BuildableName = "lab01.app"
-            BlueprintName = "lab01"
+            BlueprintIdentifier = "8E6D57FC1FDDA800002164CE"
+            BuildableName = "test.app"
+            BlueprintName = "test"
             ReferencedContainer = "container:lab01.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

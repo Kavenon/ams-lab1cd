@@ -7,10 +7,10 @@
 //
 
 import UIKit
+import CoreData
 
 class ReadingsTableViewController: UITableViewController {
 
-    var manager: ReadingManager?;
     var readings: [Reading] = [];
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -19,7 +19,7 @@ class ReadingsTableViewController: UITableViewController {
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "readingCell");
-        cell.textLabel?.text = self.readings[indexPath.row].sensor + " " + String(self.readings[indexPath.row].value);
+        cell.textLabel?.text = (self.readings[indexPath.row].sensor?.name)! + " " + String(self.readings[indexPath.row].value);
         cell.detailTextLabel?.text = String(self.readings[indexPath.row].timestamp);
         return (cell);
     }
@@ -33,10 +33,20 @@ class ReadingsTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool){
-        print("will");
+    
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-        self.manager = ReadingManager(manager: appDelegate.sqliteManager!);
-        self.readings = self.manager!.getAll();
+        
+        let moc = appDelegate.persistentContainer.viewContext;
+        let fr = NSFetchRequest<Reading>(entityName: "Reading");
+        
+        do {
+            try readings = moc.fetch(fr);
+        }
+        catch {
+            print("reading fetch failed");
+        }
+
+        
         self.tableView.reloadData();
 
     }
