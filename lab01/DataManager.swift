@@ -12,10 +12,17 @@ import CoreData
 
 class DataManager {
     
+    let appDelegate: AppDelegate;
+    let moc: NSManagedObjectContext;
+    
+    init(){
+        appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        moc = appDelegate.persistentContainer.viewContext;
+    }
+    
+    
     func insertSensors(count: Int){
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-        let moc = appDelegate.persistentContainer.viewContext;
         let entity = NSEntityDescription.entity  (forEntityName: "Sensor", in: moc)
         
         for index in 1...count {
@@ -29,10 +36,21 @@ class DataManager {
         print("Inserting sensors finished");
     }
     
-    func randomTimestamp(base: Int) -> Int {
+    func insertSensorsIfNeed(count: Int){
+        let fr = NSFetchRequest<Sensor>(entityName: "Sensor");
+        let sensors = try? moc.fetch(fr);
+        
+        if sensors?.count == 0 {
+            print("Inserting sensors");
+            self.insertSensors(count: 20)
+        }
+        
+    }
+    
+    func randomTimestamp(base: Int) -> UInt32 {
         let max = 31556926;
         let random = arc4random_uniform(UInt32(max));
-        return base - Int(random);
+        return UInt32(base) - random;
     }
     
     func randomValue(min: Double, max: Double) -> Double {
@@ -41,8 +59,6 @@ class DataManager {
     }
     
     func generateReadings(count: Int){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-        let moc = appDelegate.persistentContainer.viewContext;
         
         let fr = NSFetchRequest<Sensor>(entityName: "Sensor");
         let sensors = try? moc.fetch(fr);
@@ -53,6 +69,7 @@ class DataManager {
             
             let entity = NSEntityDescription.entity  (forEntityName: "Reading", in: moc)
             let timestamp = self.randomTimestamp(base: Int(Date().timeIntervalSince1970))
+            print("test \(timestamp)")
             let value = self.randomValue(min: 0.0, max: 100.0)
             let reading = NSManagedObject(entity: entity!, insertInto: moc)
 
@@ -69,18 +86,15 @@ class DataManager {
     
     func deleteAll(){
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-        let moc = appDelegate.persistentContainer.viewContext;
-        
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Sensor")
         let request = NSBatchDeleteRequest(fetchRequest: fetch)
         let result = try? moc.execute(request)
-//        
-//        let fetch2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Reading")
-//        let request2 = NSBatchDeleteRequest(fetchRequest: fetch2)
-//        let result2 = try? moc.execute(request2)
         
-        print("Removing all finished \(result)");
+        let fetch2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Reading")
+        let request2 = NSBatchDeleteRequest(fetchRequest: fetch2)
+        let result2 = try? moc.execute(request2)
+        
+        print("Removing all finished \(result) \(result2)");
         
     }
 }

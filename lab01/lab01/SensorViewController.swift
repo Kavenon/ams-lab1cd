@@ -26,6 +26,11 @@ class SensorViewController: UITableViewController {
     
     override func viewDidLoad() {
         
+        super.viewDidLoad();
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool){
         self.tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0);
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
@@ -38,9 +43,7 @@ class SensorViewController: UITableViewController {
         catch {
             print("sensor fetch failed");
         }
-        
-        super.viewDidLoad();
-        
+        self.tableView.reloadData();
     }
 
     override func didReceiveMemoryWarning() {

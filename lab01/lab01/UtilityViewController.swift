@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class UtilityViewController: UIViewController {
 
@@ -63,8 +64,8 @@ class UtilityViewController: UIViewController {
         
         if count > 0 {
             
-            self.dataManager.insertSensors(count: 20)
-           
+            self.dataManager.insertSensorsIfNeed(count: 20)
+            
             let start = NSDate();
             self.dataManager.generateReadings(count: count)
             let took = NSDate().timeIntervalSince(start as Date);
