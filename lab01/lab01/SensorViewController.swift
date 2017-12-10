@@ -31,10 +31,6 @@ class SensorViewController: UITableViewController {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         self.manager = SensorManager(sqlite: appDelegate.sqliteManager!);
-        
-        self.manager!.create();
-        self.manager!.clear();
-        self.manager!.insert(count: 20);
         self.sensors = self.manager!.getAll();
         super.viewDidLoad();
         

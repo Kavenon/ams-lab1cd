@@ -16,12 +16,14 @@ class UtilityViewController: UIViewController {
     @IBOutlet var deleteButton: UIButton!			
     @IBOutlet var logText: UITextView!
     var manager: ReadingManager?
+    var sensorManager: SensorManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         self.manager = ReadingManager(manager: appDelegate.sqliteManager!);
+        self.sensorManager = SensorManager(sqlite: appDelegate.sqliteManager!);
     }
 
     @IBAction func forSensorClick(_ sender: Any) {
@@ -63,6 +65,12 @@ class UtilityViewController: UIViewController {
         }
         
         if count > 0 {
+            
+            self.sensorManager!.create();
+            self.sensorManager!.clear();
+            self.sensorManager!.insert(count: 20);
+
+            self.manager!.create();
             let start = NSDate();
             self.manager!.insert(count: count);
             let took = NSDate().timeIntervalSince(start as Date);
