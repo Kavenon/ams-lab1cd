@@ -58,6 +58,86 @@ class DataManager {
         return rand * (max - min) + min
     }
     
+    func avg() -> Double {
+        let fr = NSFetchRequest<NSFetchRequestResult>  (entityName: "Reading")
+        fr.resultType = .dictionaryResultType
+        let ed = NSExpressionDescription()
+        ed.name = "avg"
+        ed.expression = NSExpression(format: "@avg.value")
+        ed.expressionResultType = .doubleAttributeType
+        
+        fr.propertiesToFetch = [ed]
+        
+        let result = try? moc.fetch(fr) as? [NSDictionary]
+        let avg = result??.first?["avg"] as! Double
+        
+        return avg
+    }
+    
+    func avgForSensor() -> [AvgSensor] {
+        
+        let fr = NSFetchRequest<NSFetchRequestResult>  (entityName: "Sensor")
+        fr.resultType = .dictionaryResultType
+        let ed = NSExpressionDescription()
+        ed.name = "avg"
+        ed.expression = NSExpression(format: "@avg.readings.value")
+        ed.expressionResultType = .doubleAttributeType
+        
+        let ed3 = NSExpressionDescription()
+        ed3.name = "name"
+        ed3.expression = NSExpression(format: "name")
+        ed3.expressionResultType = .stringAttributeType
+        
+        let ed2 = NSExpressionDescription()
+        ed2.name = "count"
+        ed2.expression = NSExpression(format: "readings.@count")
+        ed2.expressionResultType = .integer32AttributeType
+        
+        
+        fr.propertiesToFetch = [ed, ed2, ed3]
+       
+        
+        let result = try? moc.fetch(fr) as? [NSDictionary]
+        
+        var toReturn: [AvgSensor] = [];
+      
+        for r in result!! {
+            let name = r["name"] as! String
+            var avg = 0.0;
+            if r["avg"] != nil {
+                avg = r["avg"] as! Double
+            }
+            let count = r["count"] as! Int
+            toReturn.append(AvgSensor(sensor: name, count: count, avg: avg))
+        }
+        
+        return toReturn
+
+        
+    }
+    
+    func minMaxTimestamp() -> [Int] {
+        let fr = NSFetchRequest<NSFetchRequestResult>  (entityName: "Reading")
+        fr.resultType = .dictionaryResultType
+        let ed = NSExpressionDescription()
+        ed.name = "MinimumTimestamp"
+        ed.expression = NSExpression(format: "@min.timestamp")
+        ed.expressionResultType = .integer32AttributeType
+        
+        let ed2 = NSExpressionDescription()
+        ed2.name = "MaximumTimestamp"
+        ed2.expression = NSExpression(format: "@max.timestamp")
+        ed2.expressionResultType = .integer32AttributeType
+        fr.propertiesToFetch = [ed, ed2]
+
+        let result = try? moc.fetch(fr) as? [NSDictionary]
+        let max = result??.first?["MaximumTimestamp"] as! Int
+        let min = result??.first?["MinimumTimestamp"] as! Int
+        
+        return [min, max];
+        
+    }
+    
     func generateReadings(count: Int){
         
         let fr = NSFetchRequest<Sensor>(entityName: "Sensor");
