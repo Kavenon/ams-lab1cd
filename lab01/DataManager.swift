@@ -158,79 +158,18 @@ class DataManager {
     
 
     func generateReadings(count: Int){
-        
-        //let fr = NSFetchRequest<Sensor>(entityName: "Sensor");
-        
-//        
-//        let numbers = Array(1...count)
-//        let chunks = numbers.chunks(1000);
-//        for chunk in chunks {
-//            
-//            autoreleasepool {
-//                let sensors = try? moc.fetch(fr);
-//                for _ in chunk {
-//                    let randomIndex = Int(arc4random_uniform(UInt32((sensors?.count)!)))
-//                    let sensor = sensors?[randomIndex]
-//                
-//                    let entity = NSEntityDescription.entity  (forEntityName: "Reading", in: moc)
-//                    let timestamp = self.randomTimestamp(base: Int(Date().timeIntervalSince1970))
-//                
-//                    let value = self.randomValue(min: 0.0, max: 100.0)
-//                    let reading = NSManagedObject(entity: entity!, insertInto: moc)
-//                
-//                    reading.setValue(sensor, forKey: "sensor")
-//                        reading.setValue(timestamp, forKey: "timestamp")
-//                    reading.setValue(value, forKey: "value")
-//                    
-//                    sensor?.readings?.adding(reading)
-//                }
-//            }
-//            try? moc.save()
-//            moc.reset()
-//            
-//        }
-//        
-//        let sensors = try? moc.fetch(fr);
-        // =============================
-//        for i in 1...count {
-//            
-//            autoreleasepool {
-//            let fr = NSFetchRequest<Sensor>(entityName: "Sensor");
-//            fr.predicate = NSPredicate(format: "name == %@", self.randomSensor(max: 20))
-//            let sensors = try? moc.fetch(fr);
-//            let sensor = sensors?[0];
-//            
-//            
-//                let entity = NSEntityDescription.entity  (forEntityName: "Reading", in: moc)
-//                let timestamp = self.randomTimestamp(base: Int(Date().timeIntervalSince1970))
-//                
-//                let value = self.randomValue(min: 0.0, max: 100.0)
-//                let reading = NSManagedObject(entity: entity!, insertInto: moc)
-//                
-//                reading.setValue(sensor, forKey: "sensor")
-//                reading.setValue(timestamp, forKey: "timestamp")
-//                reading.setValue(value, forKey: "value")
-//            
-//            
-//                sensor?.readings?.adding(reading)
-//            
-//                try? moc.save()
-//                print("saving \(i)")
-//            }
-//        
-//        }
-//        
-        
+      
         let fr = NSFetchRequest<Sensor>(entityName: "Sensor");
         let sensors = try? moc.fetch(fr);
-        for i in 1...count {
+        let entity = NSEntityDescription.entity  (forEntityName: "Reading", in: moc)
+        
+        for _ in 1...count {
             
                       
                 let randomIndex = Int(arc4random_uniform(UInt32((sensors?.count)!)))
                 let sensor = sensors?[randomIndex]
                 
                 
-                let entity = NSEntityDescription.entity  (forEntityName: "Reading", in: moc)
                 let timestamp = self.randomTimestamp(base: Int(Date().timeIntervalSince1970))
                 
                 let value = self.randomValue(min: 0.0, max: 100.0)
@@ -240,11 +179,6 @@ class DataManager {
                 reading.setValue(timestamp, forKey: "timestamp")
                 reading.setValue(value, forKey: "value")
                 
-                
-                sensor?.readings?.adding(reading)
-                
-            
-                print("saving \(i)")
             
             
         }
